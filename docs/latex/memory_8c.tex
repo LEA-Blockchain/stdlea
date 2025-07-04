@@ -1,0 +1,169 @@
+\hypertarget{memory_8c}{}\doxysection{src/memory.c File Reference}
+\label{memory_8c}\index{src/memory.c@{src/memory.c}}
+{\ttfamily \#include \char`\"{}stdlea.\+h\char`\"{}}\newline
+Include dependency graph for memory.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{memory_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{memory_8c_a946a53e9a701444cf35632fd10b925fc}{memset}} (void $\ast$dest, int val, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Fills a block of memory with a specified value. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{memory_8c_aee2cb14f63e73acc45996f71718121b1}{memcpy}} (void $\ast$dest, const void $\ast$src, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Copies a block of memory from a source location to a destination location. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{memory_8c_a4522f53cff2fef09001e4d34227463a9}{memmove}} (void $\ast$dest, const void $\ast$src, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Moves a block of memory from a source location to a destination location. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{memory_8c_a37be598e2854ceda590db3eb7075d5f5}{LEA\+\_\+\+EXPORT}} (\+\_\+\+\_\+lea\+\_\+malloc)
+\item 
+\mbox{\hyperlink{memory_8c_a08a5bd6c9e05dcc56233cebc470c63e9}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((used))
+\begin{DoxyCompactList}\small\item\em Resets the heap allocator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{stdlea_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} \mbox{\hyperlink{memory_8c_ac5e0d1bf57bdced80a0670c3a094630b}{heap}} \mbox{[}\mbox{\hyperlink{stdlea_8h_a4f160f65e888542481816f1c22f5e593}{LEA\+\_\+\+HEAP\+\_\+\+SIZE}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em The static memory heap for the Lea program. \end{DoxyCompactList}\item 
+static size\+\_\+t \mbox{\hyperlink{memory_8c_a95ea35b8d46499950dc906d2a3e06805}{heap\+\_\+top}} = 0
+\begin{DoxyCompactList}\small\item\em Pointer to the next available free memory block in the heap. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{memory_8c_a08a5bd6c9e05dcc56233cebc470c63e9}\label{memory_8c_a08a5bd6c9e05dcc56233cebc470c63e9}} 
+\index{memory.c@{memory.c}!\_\_attribute\_\_@{\_\_attribute\_\_}}
+\index{\_\_attribute\_\_@{\_\_attribute\_\_}!memory.c@{memory.c}}
+\doxysubsubsection{\texorpdfstring{\_\_attribute\_\_()}{\_\_attribute\_\_()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+attribute\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{(used)}]{ }\end{DoxyParamCaption})}
+
+
+
+Resets the heap allocator. 
+
+Gets the current top of the heap.
+
+Gets the base address of the heap.
+
+\begin{DoxyNote}{Note}
+This function clears the entire heap to zero and resets the heap pointer to the beginning of the heap.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+A pointer to the beginning of the static heap. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function is exported to the host environment.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+The current value of the heap\+\_\+top offset. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function is exported to the host environment. It represents the total number of bytes allocated. 
+\end{DoxyNote}
+\mbox{\Hypertarget{memory_8c_a37be598e2854ceda590db3eb7075d5f5}\label{memory_8c_a37be598e2854ceda590db3eb7075d5f5}} 
+\index{memory.c@{memory.c}!LEA\_EXPORT@{LEA\_EXPORT}}
+\index{LEA\_EXPORT@{LEA\_EXPORT}!memory.c@{memory.c}}
+\doxysubsubsection{\texorpdfstring{LEA\_EXPORT()}{LEA\_EXPORT()}}
+{\footnotesize\ttfamily LEA\+\_\+\+EXPORT (\begin{DoxyParamCaption}\item[{\+\_\+\+\_\+lea\+\_\+malloc}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{memory_8c_aee2cb14f63e73acc45996f71718121b1}\label{memory_8c_aee2cb14f63e73acc45996f71718121b1}} 
+\index{memory.c@{memory.c}!memcpy@{memcpy}}
+\index{memcpy@{memcpy}!memory.c@{memory.c}}
+\doxysubsubsection{\texorpdfstring{memcpy()}{memcpy()}}
+{\footnotesize\ttfamily void $\ast$ memcpy (\begin{DoxyParamCaption}\item[{void $\ast$}]{dest,  }\item[{const void $\ast$}]{src,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Copies a block of memory from a source location to a destination location. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & Pointer to the destination array where the content is to be copied. \\
+\hline
+{\em src} & Pointer to the source of data to be copied. \\
+\hline
+{\em len} & Number of bytes to copy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the destination, which is {\ttfamily dest}. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is a fallback implementation for environments without bulk memory support. Assumes no overlap between src and dest. 
+\end{DoxyNote}
+\mbox{\Hypertarget{memory_8c_a4522f53cff2fef09001e4d34227463a9}\label{memory_8c_a4522f53cff2fef09001e4d34227463a9}} 
+\index{memory.c@{memory.c}!memmove@{memmove}}
+\index{memmove@{memmove}!memory.c@{memory.c}}
+\doxysubsubsection{\texorpdfstring{memmove()}{memmove()}}
+{\footnotesize\ttfamily void $\ast$ memmove (\begin{DoxyParamCaption}\item[{void $\ast$}]{dest,  }\item[{const void $\ast$}]{src,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Moves a block of memory from a source location to a destination location. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & Pointer to the destination array where the content is to be copied. \\
+\hline
+{\em src} & Pointer to the source of data to be copied. \\
+\hline
+{\em len} & Number of bytes to copy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the destination, which is {\ttfamily dest}. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is a fallback implementation for environments without bulk memory support. Handles overlapping memory regions correctly. 
+\end{DoxyNote}
+\mbox{\Hypertarget{memory_8c_a946a53e9a701444cf35632fd10b925fc}\label{memory_8c_a946a53e9a701444cf35632fd10b925fc}} 
+\index{memory.c@{memory.c}!memset@{memset}}
+\index{memset@{memset}!memory.c@{memory.c}}
+\doxysubsubsection{\texorpdfstring{memset()}{memset()}}
+{\footnotesize\ttfamily void $\ast$ memset (\begin{DoxyParamCaption}\item[{void $\ast$}]{dest,  }\item[{int}]{val,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Fills a block of memory with a specified value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & Pointer to the block of memory to fill. \\
+\hline
+{\em val} & Value to be set. The value is passed as an int, but the function fills the block of memory using the unsigned char conversion of this value. \\
+\hline
+{\em len} & Number of bytes to be set to the value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the memory area {\ttfamily dest}. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is a fallback implementation for environments without bulk memory support. 
+\end{DoxyNote}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{memory_8c_ac5e0d1bf57bdced80a0670c3a094630b}\label{memory_8c_ac5e0d1bf57bdced80a0670c3a094630b}} 
+\index{memory.c@{memory.c}!heap@{heap}}
+\index{heap@{heap}!memory.c@{memory.c}}
+\doxysubsubsection{\texorpdfstring{heap}{heap}}
+{\footnotesize\ttfamily \mbox{\hyperlink{stdlea_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}} heap\mbox{[}\mbox{\hyperlink{stdlea_8h_a4f160f65e888542481816f1c22f5e593}{LEA\+\_\+\+HEAP\+\_\+\+SIZE}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The static memory heap for the Lea program. 
+
+\begin{DoxyNote}{Note}
+The size is defined by LEA\+\_\+\+HEAP\+\_\+\+SIZE in \mbox{\hyperlink{stdlea_8h}{stdlea.\+h}}. 
+\end{DoxyNote}
+\mbox{\Hypertarget{memory_8c_a95ea35b8d46499950dc906d2a3e06805}\label{memory_8c_a95ea35b8d46499950dc906d2a3e06805}} 
+\index{memory.c@{memory.c}!heap\_top@{heap\_top}}
+\index{heap\_top@{heap\_top}!memory.c@{memory.c}}
+\doxysubsubsection{\texorpdfstring{heap\_top}{heap\_top}}
+{\footnotesize\ttfamily size\+\_\+t heap\+\_\+top = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pointer to the next available free memory block in the heap. 
+

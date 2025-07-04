@@ -1,0 +1,521 @@
+\hypertarget{stdlea_8h}{}\doxysection{include/stdlea.h File Reference}
+\label{stdlea_8h}\index{include/stdlea.h@{include/stdlea.h}}
+
+
+Standard library for Lea programs. This file provides standard type definitions, macros, and function declarations for use in Lea programs. It ensures a consistent environment, whether compiling for 32-\/bit or 64-\/bit Wasm targets.  
+
+
+{\ttfamily \#include \char`\"{}c\+\_\+feature\+\_\+check.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}wasm\+\_\+feature\+\_\+check.\+h\char`\"{}}\newline
+Include dependency graph for stdlea.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{stdlea_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{stdlea_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{stdlea_8h_a3c75bb398badb69c7577b21486f9963f}{SIZE\+\_\+\+MAX}}~((size\+\_\+t)-\/1)
+\begin{DoxyCompactList}\small\item\em The maximum value for a {\ttfamily size\+\_\+t} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Integer Limits}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{stdlea_8h_aeb4e270a084ee26fe73e799861bd0252}{UINT8\+\_\+\+MAX}}~(255U)
+\item 
+\#define \mbox{\hyperlink{stdlea_8h_aaf7f29f45f1a513b4748a4e5014ddf6a}{INT8\+\_\+\+MAX}}~(127)
+\item 
+\#define \mbox{\hyperlink{stdlea_8h_aadcf2a81af243df333b31efa6461ab8e}{INT8\+\_\+\+MIN}}~(-\/128)
+\item 
+\#define \mbox{\hyperlink{stdlea_8h_a3ea490c9b3617d4479bd80ef93cd5602}{UINT16\+\_\+\+MAX}}~(65535U)
+\item 
+\#define \mbox{\hyperlink{stdlea_8h_ac58f2c111cc9989c86db2a7dc4fd84ca}{INT16\+\_\+\+MAX}}~(32767)
+\item 
+\#define \mbox{\hyperlink{stdlea_8h_ad4e9955955b27624963643eac448118a}{INT16\+\_\+\+MIN}}~(-\/32768)
+\item 
+\#define \mbox{\hyperlink{stdlea_8h_ab5eb23180f7cc12b7d6c04a8ec067fdd}{UINT32\+\_\+\+MAX}}~(4294967295U)
+\item 
+\#define \mbox{\hyperlink{stdlea_8h_a181807730d4a375f848ba139813ce04f}{INT32\+\_\+\+MAX}}~(2147483647)
+\item 
+\#define \mbox{\hyperlink{stdlea_8h_a688eb21a22db27c2b2bd5836943cdcbe}{INT32\+\_\+\+MIN}}~(-\/2147483647 -\/ 1)
+\item 
+\#define \mbox{\hyperlink{stdlea_8h_a30654b4b67d97c42ca3f9b6052dda916}{UINT64\+\_\+\+MAX}}~(18446744073709551615ULL)
+\item 
+\#define \mbox{\hyperlink{stdlea_8h_ad0d744f05898e32d01f73f8af3cd2071}{INT64\+\_\+\+MAX}}~(9223372036854775807LL)
+\item 
+\#define \mbox{\hyperlink{stdlea_8h_ab21f12f372f67b8ff0aa3432336ede67}{INT64\+\_\+\+MIN}}~(-\/9223372036854775807LL -\/ 1)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Pointer and Size Types}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{stdlea_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{NULL}}~((void $\ast$)0)
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Function Annotations}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{stdlea_8h_a86500d390eff88b8178c6958b7e19927}{LEA\+\_\+\+EXPORT}}(FUNC\+\_\+\+NAME)~\mbox{\hyperlink{memory_8c_a08a5bd6c9e05dcc56233cebc470c63e9}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((export\+\_\+name(\#FUNC\+\_\+\+NAME), visibility(\char`\"{}default\char`\"{})))
+\begin{DoxyCompactList}\small\item\em Marks a function for export from the Wasm module. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{stdlea_8h_af9a37a2e30c602f7c0cb6c99a8064de5}{LEA\+\_\+\+IMPORT}}(PROGRAM\+\_\+\+ID,  FUNC\+\_\+\+NAME)~\mbox{\hyperlink{memory_8c_a08a5bd6c9e05dcc56233cebc470c63e9}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((import\+\_\+module(\#PROGRAM\+\_\+\+ID), import\+\_\+name(\#FUNC\+\_\+\+NAME))) extern
+\begin{DoxyCompactList}\small\item\em Marks a function for import into the Wasm module. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{stdlea_8h_a9ae025b6c26b31110a96896a826ad77e}{IF\+\_\+\+LEA\+\_\+\+EXPORT}}(FUNC\+\_\+\+NAME)~\mbox{\hyperlink{memory_8c_a37be598e2854ceda590db3eb7075d5f5}{LEA\+\_\+\+EXPORT}}(FUNC\+\_\+\+NAME)
+\begin{DoxyCompactList}\small\item\em A conditional version of LEA\+\_\+\+EXPORT, intended for future use. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Logging and Aborting}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{stdlea_8h_aa8a471ecc4c505029d7ebeb013b477cb}{LEA\+\_\+\+LOG}}(MSG)~((void)0)
+\begin{DoxyCompactList}\small\item\em A no-\/op logging macro. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{stdlea_8h_a0a1992542e3f5deee9631763aec0d0cf}{lea\+\_\+abort}}(ERROR\+\_\+\+MESSAGE)~\+\_\+\+\_\+builtin\+\_\+trap()
+\begin{DoxyCompactList}\small\item\em Aborts execution immediately. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Heap and Buffer Configuration}\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{stdlea_8h_a4f160f65e888542481816f1c22f5e593}{LEA\+\_\+\+HEAP\+\_\+\+SIZE}}~65536
+\begin{DoxyCompactList}\small\item\em The total size of the static heap in bytes. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{stdlea_8h_a6c6aaa6ce478d84c615f3f56f087ce46}{LEA\+\_\+\+LOG\+\_\+\+BUFFER\+\_\+\+SIZE}}~512
+\begin{DoxyCompactList}\small\item\em The size of the buffer used for logging messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsection*{Typedefs}
+\begin{Indent}\textbf{ Fixed-\/\+Width Integer Types}\par
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned char \mbox{\hyperlink{stdlea_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}
+\item 
+typedef unsigned short \mbox{\hyperlink{stdlea_8h_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t}}
+\item 
+typedef unsigned int \mbox{\hyperlink{stdlea_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}}
+\item 
+typedef unsigned long long \mbox{\hyperlink{stdlea_8h_aaa5d1cd013383c889537491c3cfd9aad}{uint64\+\_\+t}}
+\item 
+typedef signed char \mbox{\hyperlink{stdlea_8h_aef44329758059c91c76d334e8fc09700}{int8\+\_\+t}}
+\item 
+typedef signed short \mbox{\hyperlink{stdlea_8h_a269259c924dce846340ddbb810db2e3c}{int16\+\_\+t}}
+\item 
+typedef signed int \mbox{\hyperlink{stdlea_8h_ab1967d8591af1a4e48c37fd2b0f184d0}{int32\+\_\+t}}
+\item 
+typedef signed long long \mbox{\hyperlink{stdlea_8h_adec1df1b8b51cb32b77e5b86fff46471}{int64\+\_\+t}}
+\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsection*{Functions}
+\begin{Indent}\textbf{ Memory Functions}\par
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{stdlea_8h_a946a53e9a701444cf35632fd10b925fc}{memset}} (void $\ast$dest, int val, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Fills a block of memory with a specified value. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{stdlea_8h_aee2cb14f63e73acc45996f71718121b1}{memcpy}} (void $\ast$dest, const void $\ast$src, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Copies a block of memory from a source location to a destination location. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{stdlea_8h_a4522f53cff2fef09001e4d34227463a9}{memmove}} (void $\ast$dest, const void $\ast$src, size\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Moves a block of memory from a source location to a destination location. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{stdlea_8h_a9c36d0fe3ec4675cbffdc9b52f5fb399}{malloc}} (size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Allocates memory from the heap. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stdlea_8h_aa2f804097b32d561d90236b0ab7a7101}{allocator\+\_\+reset}} ()
+\begin{DoxyCompactList}\small\item\em Resets the heap allocator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsection*{Boolean Type and Values}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{stdlea_8h_a41f9c5fb8b08eb5dc3edce4dcb37fee7}{true}}~((\mbox{\hyperlink{stdlea_8h_afaa87723b8417d40fcf45b7330261ef9}{bool}})1)
+\item 
+\#define \mbox{\hyperlink{stdlea_8h_a65e9886d74aaee76545e83dd09011727}{false}}~((\mbox{\hyperlink{stdlea_8h_afaa87723b8417d40fcf45b7330261ef9}{bool}})0)
+\item 
+typedef \+\_\+\+Bool \mbox{\hyperlink{stdlea_8h_afaa87723b8417d40fcf45b7330261ef9}{bool}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Standard library for Lea programs. This file provides standard type definitions, macros, and function declarations for use in Lea programs. It ensures a consistent environment, whether compiling for 32-\/bit or 64-\/bit Wasm targets. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{stdlea_8h_a65e9886d74aaee76545e83dd09011727}\label{stdlea_8h_a65e9886d74aaee76545e83dd09011727}} 
+\index{stdlea.h@{stdlea.h}!false@{false}}
+\index{false@{false}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{false}{false}}
+{\footnotesize\ttfamily \#define false~((\mbox{\hyperlink{stdlea_8h_afaa87723b8417d40fcf45b7330261ef9}{bool}})0)}
+
+\mbox{\Hypertarget{stdlea_8h_a9ae025b6c26b31110a96896a826ad77e}\label{stdlea_8h_a9ae025b6c26b31110a96896a826ad77e}} 
+\index{stdlea.h@{stdlea.h}!IF\_LEA\_EXPORT@{IF\_LEA\_EXPORT}}
+\index{IF\_LEA\_EXPORT@{IF\_LEA\_EXPORT}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{IF\_LEA\_EXPORT}{IF\_LEA\_EXPORT}}
+{\footnotesize\ttfamily \#define IF\+\_\+\+LEA\+\_\+\+EXPORT(\begin{DoxyParamCaption}\item[{}]{FUNC\+\_\+\+NAME }\end{DoxyParamCaption})~\mbox{\hyperlink{memory_8c_a37be598e2854ceda590db3eb7075d5f5}{LEA\+\_\+\+EXPORT}}(FUNC\+\_\+\+NAME)}
+
+
+
+A conditional version of LEA\+\_\+\+EXPORT, intended for future use. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em FUNC\+\_\+\+NAME} & The name of the function. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{stdlea_8h_ac58f2c111cc9989c86db2a7dc4fd84ca}\label{stdlea_8h_ac58f2c111cc9989c86db2a7dc4fd84ca}} 
+\index{stdlea.h@{stdlea.h}!INT16\_MAX@{INT16\_MAX}}
+\index{INT16\_MAX@{INT16\_MAX}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{INT16\_MAX}{INT16\_MAX}}
+{\footnotesize\ttfamily \#define INT16\+\_\+\+MAX~(32767)}
+
+\mbox{\Hypertarget{stdlea_8h_ad4e9955955b27624963643eac448118a}\label{stdlea_8h_ad4e9955955b27624963643eac448118a}} 
+\index{stdlea.h@{stdlea.h}!INT16\_MIN@{INT16\_MIN}}
+\index{INT16\_MIN@{INT16\_MIN}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{INT16\_MIN}{INT16\_MIN}}
+{\footnotesize\ttfamily \#define INT16\+\_\+\+MIN~(-\/32768)}
+
+\mbox{\Hypertarget{stdlea_8h_a181807730d4a375f848ba139813ce04f}\label{stdlea_8h_a181807730d4a375f848ba139813ce04f}} 
+\index{stdlea.h@{stdlea.h}!INT32\_MAX@{INT32\_MAX}}
+\index{INT32\_MAX@{INT32\_MAX}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{INT32\_MAX}{INT32\_MAX}}
+{\footnotesize\ttfamily \#define INT32\+\_\+\+MAX~(2147483647)}
+
+\mbox{\Hypertarget{stdlea_8h_a688eb21a22db27c2b2bd5836943cdcbe}\label{stdlea_8h_a688eb21a22db27c2b2bd5836943cdcbe}} 
+\index{stdlea.h@{stdlea.h}!INT32\_MIN@{INT32\_MIN}}
+\index{INT32\_MIN@{INT32\_MIN}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{INT32\_MIN}{INT32\_MIN}}
+{\footnotesize\ttfamily \#define INT32\+\_\+\+MIN~(-\/2147483647 -\/ 1)}
+
+\mbox{\Hypertarget{stdlea_8h_ad0d744f05898e32d01f73f8af3cd2071}\label{stdlea_8h_ad0d744f05898e32d01f73f8af3cd2071}} 
+\index{stdlea.h@{stdlea.h}!INT64\_MAX@{INT64\_MAX}}
+\index{INT64\_MAX@{INT64\_MAX}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{INT64\_MAX}{INT64\_MAX}}
+{\footnotesize\ttfamily \#define INT64\+\_\+\+MAX~(9223372036854775807LL)}
+
+\mbox{\Hypertarget{stdlea_8h_ab21f12f372f67b8ff0aa3432336ede67}\label{stdlea_8h_ab21f12f372f67b8ff0aa3432336ede67}} 
+\index{stdlea.h@{stdlea.h}!INT64\_MIN@{INT64\_MIN}}
+\index{INT64\_MIN@{INT64\_MIN}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{INT64\_MIN}{INT64\_MIN}}
+{\footnotesize\ttfamily \#define INT64\+\_\+\+MIN~(-\/9223372036854775807LL -\/ 1)}
+
+\mbox{\Hypertarget{stdlea_8h_aaf7f29f45f1a513b4748a4e5014ddf6a}\label{stdlea_8h_aaf7f29f45f1a513b4748a4e5014ddf6a}} 
+\index{stdlea.h@{stdlea.h}!INT8\_MAX@{INT8\_MAX}}
+\index{INT8\_MAX@{INT8\_MAX}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{INT8\_MAX}{INT8\_MAX}}
+{\footnotesize\ttfamily \#define INT8\+\_\+\+MAX~(127)}
+
+\mbox{\Hypertarget{stdlea_8h_aadcf2a81af243df333b31efa6461ab8e}\label{stdlea_8h_aadcf2a81af243df333b31efa6461ab8e}} 
+\index{stdlea.h@{stdlea.h}!INT8\_MIN@{INT8\_MIN}}
+\index{INT8\_MIN@{INT8\_MIN}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{INT8\_MIN}{INT8\_MIN}}
+{\footnotesize\ttfamily \#define INT8\+\_\+\+MIN~(-\/128)}
+
+\mbox{\Hypertarget{stdlea_8h_a0a1992542e3f5deee9631763aec0d0cf}\label{stdlea_8h_a0a1992542e3f5deee9631763aec0d0cf}} 
+\index{stdlea.h@{stdlea.h}!lea\_abort@{lea\_abort}}
+\index{lea\_abort@{lea\_abort}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{lea\_abort}{lea\_abort}}
+{\footnotesize\ttfamily \#define lea\+\_\+abort(\begin{DoxyParamCaption}\item[{}]{ERROR\+\_\+\+MESSAGE }\end{DoxyParamCaption})~\+\_\+\+\_\+builtin\+\_\+trap()}
+
+
+
+Aborts execution immediately. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ERROR\+\_\+\+MESSAGE} & The message, which is ignored. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This macro executes a trap instruction without logging. 
+\end{DoxyNote}
+\mbox{\Hypertarget{stdlea_8h_a86500d390eff88b8178c6958b7e19927}\label{stdlea_8h_a86500d390eff88b8178c6958b7e19927}} 
+\index{stdlea.h@{stdlea.h}!LEA\_EXPORT@{LEA\_EXPORT}}
+\index{LEA\_EXPORT@{LEA\_EXPORT}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{LEA\_EXPORT}{LEA\_EXPORT}}
+{\footnotesize\ttfamily \#define LEA\+\_\+\+EXPORT(\begin{DoxyParamCaption}\item[{}]{FUNC\+\_\+\+NAME }\end{DoxyParamCaption})~\mbox{\hyperlink{memory_8c_a08a5bd6c9e05dcc56233cebc470c63e9}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((export\+\_\+name(\#FUNC\+\_\+\+NAME), visibility(\char`\"{}default\char`\"{})))}
+
+
+
+Marks a function for export from the Wasm module. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em FUNC\+\_\+\+NAME} & The name of the function to export. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{stdlea_8h_a4f160f65e888542481816f1c22f5e593}\label{stdlea_8h_a4f160f65e888542481816f1c22f5e593}} 
+\index{stdlea.h@{stdlea.h}!LEA\_HEAP\_SIZE@{LEA\_HEAP\_SIZE}}
+\index{LEA\_HEAP\_SIZE@{LEA\_HEAP\_SIZE}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{LEA\_HEAP\_SIZE}{LEA\_HEAP\_SIZE}}
+{\footnotesize\ttfamily \#define LEA\+\_\+\+HEAP\+\_\+\+SIZE~65536}
+
+
+
+The total size of the static heap in bytes. 
+
+\mbox{\Hypertarget{stdlea_8h_af9a37a2e30c602f7c0cb6c99a8064de5}\label{stdlea_8h_af9a37a2e30c602f7c0cb6c99a8064de5}} 
+\index{stdlea.h@{stdlea.h}!LEA\_IMPORT@{LEA\_IMPORT}}
+\index{LEA\_IMPORT@{LEA\_IMPORT}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{LEA\_IMPORT}{LEA\_IMPORT}}
+{\footnotesize\ttfamily \#define LEA\+\_\+\+IMPORT(\begin{DoxyParamCaption}\item[{}]{PROGRAM\+\_\+\+ID,  }\item[{}]{FUNC\+\_\+\+NAME }\end{DoxyParamCaption})~\mbox{\hyperlink{memory_8c_a08a5bd6c9e05dcc56233cebc470c63e9}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((import\+\_\+module(\#PROGRAM\+\_\+\+ID), import\+\_\+name(\#FUNC\+\_\+\+NAME))) extern}
+
+
+
+Marks a function for import into the Wasm module. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em PROGRAM\+\_\+\+ID} & The module from which to import. \\
+\hline
+{\em FUNC\+\_\+\+NAME} & The name of the function to import. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{stdlea_8h_aa8a471ecc4c505029d7ebeb013b477cb}\label{stdlea_8h_aa8a471ecc4c505029d7ebeb013b477cb}} 
+\index{stdlea.h@{stdlea.h}!LEA\_LOG@{LEA\_LOG}}
+\index{LEA\_LOG@{LEA\_LOG}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{LEA\_LOG}{LEA\_LOG}}
+{\footnotesize\ttfamily \#define LEA\+\_\+\+LOG(\begin{DoxyParamCaption}\item[{}]{MSG }\end{DoxyParamCaption})~((void)0)}
+
+
+
+A no-\/op logging macro. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em MSG} & The message, which is ignored. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This macro does nothing when {\ttfamily ENABLE\+\_\+\+LEA\+\_\+\+LOG} is not defined. 
+\end{DoxyNote}
+\mbox{\Hypertarget{stdlea_8h_a6c6aaa6ce478d84c615f3f56f087ce46}\label{stdlea_8h_a6c6aaa6ce478d84c615f3f56f087ce46}} 
+\index{stdlea.h@{stdlea.h}!LEA\_LOG\_BUFFER\_SIZE@{LEA\_LOG\_BUFFER\_SIZE}}
+\index{LEA\_LOG\_BUFFER\_SIZE@{LEA\_LOG\_BUFFER\_SIZE}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{LEA\_LOG\_BUFFER\_SIZE}{LEA\_LOG\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define LEA\+\_\+\+LOG\+\_\+\+BUFFER\+\_\+\+SIZE~512}
+
+
+
+The size of the buffer used for logging messages. 
+
+\mbox{\Hypertarget{stdlea_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}\label{stdlea_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}} 
+\index{stdlea.h@{stdlea.h}!NULL@{NULL}}
+\index{NULL@{NULL}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{NULL}{NULL}}
+{\footnotesize\ttfamily \#define NULL~((void $\ast$)0)}
+
+\mbox{\Hypertarget{stdlea_8h_a3c75bb398badb69c7577b21486f9963f}\label{stdlea_8h_a3c75bb398badb69c7577b21486f9963f}} 
+\index{stdlea.h@{stdlea.h}!SIZE\_MAX@{SIZE\_MAX}}
+\index{SIZE\_MAX@{SIZE\_MAX}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{SIZE\_MAX}{SIZE\_MAX}}
+{\footnotesize\ttfamily \#define SIZE\+\_\+\+MAX~((size\+\_\+t)-\/1)}
+
+
+
+The maximum value for a {\ttfamily size\+\_\+t} object. 
+
+\mbox{\Hypertarget{stdlea_8h_a41f9c5fb8b08eb5dc3edce4dcb37fee7}\label{stdlea_8h_a41f9c5fb8b08eb5dc3edce4dcb37fee7}} 
+\index{stdlea.h@{stdlea.h}!true@{true}}
+\index{true@{true}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{true}{true}}
+{\footnotesize\ttfamily \#define true~((\mbox{\hyperlink{stdlea_8h_afaa87723b8417d40fcf45b7330261ef9}{bool}})1)}
+
+\mbox{\Hypertarget{stdlea_8h_a3ea490c9b3617d4479bd80ef93cd5602}\label{stdlea_8h_a3ea490c9b3617d4479bd80ef93cd5602}} 
+\index{stdlea.h@{stdlea.h}!UINT16\_MAX@{UINT16\_MAX}}
+\index{UINT16\_MAX@{UINT16\_MAX}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{UINT16\_MAX}{UINT16\_MAX}}
+{\footnotesize\ttfamily \#define UINT16\+\_\+\+MAX~(65535U)}
+
+\mbox{\Hypertarget{stdlea_8h_ab5eb23180f7cc12b7d6c04a8ec067fdd}\label{stdlea_8h_ab5eb23180f7cc12b7d6c04a8ec067fdd}} 
+\index{stdlea.h@{stdlea.h}!UINT32\_MAX@{UINT32\_MAX}}
+\index{UINT32\_MAX@{UINT32\_MAX}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{UINT32\_MAX}{UINT32\_MAX}}
+{\footnotesize\ttfamily \#define UINT32\+\_\+\+MAX~(4294967295U)}
+
+\mbox{\Hypertarget{stdlea_8h_a30654b4b67d97c42ca3f9b6052dda916}\label{stdlea_8h_a30654b4b67d97c42ca3f9b6052dda916}} 
+\index{stdlea.h@{stdlea.h}!UINT64\_MAX@{UINT64\_MAX}}
+\index{UINT64\_MAX@{UINT64\_MAX}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{UINT64\_MAX}{UINT64\_MAX}}
+{\footnotesize\ttfamily \#define UINT64\+\_\+\+MAX~(18446744073709551615ULL)}
+
+\mbox{\Hypertarget{stdlea_8h_aeb4e270a084ee26fe73e799861bd0252}\label{stdlea_8h_aeb4e270a084ee26fe73e799861bd0252}} 
+\index{stdlea.h@{stdlea.h}!UINT8\_MAX@{UINT8\_MAX}}
+\index{UINT8\_MAX@{UINT8\_MAX}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{UINT8\_MAX}{UINT8\_MAX}}
+{\footnotesize\ttfamily \#define UINT8\+\_\+\+MAX~(255U)}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{stdlea_8h_afaa87723b8417d40fcf45b7330261ef9}\label{stdlea_8h_afaa87723b8417d40fcf45b7330261ef9}} 
+\index{stdlea.h@{stdlea.h}!bool@{bool}}
+\index{bool@{bool}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{bool}{bool}}
+{\footnotesize\ttfamily typedef \+\_\+\+Bool \mbox{\hyperlink{stdlea_8h_afaa87723b8417d40fcf45b7330261ef9}{bool}}}
+
+Boolean type. \mbox{\Hypertarget{stdlea_8h_a269259c924dce846340ddbb810db2e3c}\label{stdlea_8h_a269259c924dce846340ddbb810db2e3c}} 
+\index{stdlea.h@{stdlea.h}!int16\_t@{int16\_t}}
+\index{int16\_t@{int16\_t}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{int16\_t}{int16\_t}}
+{\footnotesize\ttfamily typedef signed short \mbox{\hyperlink{stdlea_8h_a269259c924dce846340ddbb810db2e3c}{int16\+\_\+t}}}
+
+Signed 16-\/bit integer. \mbox{\Hypertarget{stdlea_8h_ab1967d8591af1a4e48c37fd2b0f184d0}\label{stdlea_8h_ab1967d8591af1a4e48c37fd2b0f184d0}} 
+\index{stdlea.h@{stdlea.h}!int32\_t@{int32\_t}}
+\index{int32\_t@{int32\_t}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{int32\_t}{int32\_t}}
+{\footnotesize\ttfamily typedef signed int \mbox{\hyperlink{stdlea_8h_ab1967d8591af1a4e48c37fd2b0f184d0}{int32\+\_\+t}}}
+
+Signed 32-\/bit integer. \mbox{\Hypertarget{stdlea_8h_adec1df1b8b51cb32b77e5b86fff46471}\label{stdlea_8h_adec1df1b8b51cb32b77e5b86fff46471}} 
+\index{stdlea.h@{stdlea.h}!int64\_t@{int64\_t}}
+\index{int64\_t@{int64\_t}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{int64\_t}{int64\_t}}
+{\footnotesize\ttfamily typedef signed long long \mbox{\hyperlink{stdlea_8h_adec1df1b8b51cb32b77e5b86fff46471}{int64\+\_\+t}}}
+
+Signed 64-\/bit integer. \mbox{\Hypertarget{stdlea_8h_aef44329758059c91c76d334e8fc09700}\label{stdlea_8h_aef44329758059c91c76d334e8fc09700}} 
+\index{stdlea.h@{stdlea.h}!int8\_t@{int8\_t}}
+\index{int8\_t@{int8\_t}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{int8\_t}{int8\_t}}
+{\footnotesize\ttfamily typedef signed char \mbox{\hyperlink{stdlea_8h_aef44329758059c91c76d334e8fc09700}{int8\+\_\+t}}}
+
+Signed 8-\/bit integer. \mbox{\Hypertarget{stdlea_8h_a273cf69d639a59973b6019625df33e30}\label{stdlea_8h_a273cf69d639a59973b6019625df33e30}} 
+\index{stdlea.h@{stdlea.h}!uint16\_t@{uint16\_t}}
+\index{uint16\_t@{uint16\_t}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{uint16\_t}{uint16\_t}}
+{\footnotesize\ttfamily typedef unsigned short \mbox{\hyperlink{stdlea_8h_a273cf69d639a59973b6019625df33e30}{uint16\+\_\+t}}}
+
+Unsigned 16-\/bit integer. \mbox{\Hypertarget{stdlea_8h_a435d1572bf3f880d55459d9805097f62}\label{stdlea_8h_a435d1572bf3f880d55459d9805097f62}} 
+\index{stdlea.h@{stdlea.h}!uint32\_t@{uint32\_t}}
+\index{uint32\_t@{uint32\_t}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{uint32\_t}{uint32\_t}}
+{\footnotesize\ttfamily typedef unsigned int \mbox{\hyperlink{stdlea_8h_a435d1572bf3f880d55459d9805097f62}{uint32\+\_\+t}}}
+
+Unsigned 32-\/bit integer. \mbox{\Hypertarget{stdlea_8h_aaa5d1cd013383c889537491c3cfd9aad}\label{stdlea_8h_aaa5d1cd013383c889537491c3cfd9aad}} 
+\index{stdlea.h@{stdlea.h}!uint64\_t@{uint64\_t}}
+\index{uint64\_t@{uint64\_t}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{uint64\_t}{uint64\_t}}
+{\footnotesize\ttfamily typedef unsigned long long \mbox{\hyperlink{stdlea_8h_aaa5d1cd013383c889537491c3cfd9aad}{uint64\+\_\+t}}}
+
+Unsigned 64-\/bit integer. \mbox{\Hypertarget{stdlea_8h_aba7bc1797add20fe3efdf37ced1182c5}\label{stdlea_8h_aba7bc1797add20fe3efdf37ced1182c5}} 
+\index{stdlea.h@{stdlea.h}!uint8\_t@{uint8\_t}}
+\index{uint8\_t@{uint8\_t}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{uint8\_t}{uint8\_t}}
+{\footnotesize\ttfamily typedef unsigned char \mbox{\hyperlink{stdlea_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\+\_\+t}}}
+
+Unsigned 8-\/bit integer. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{stdlea_8h_aa2f804097b32d561d90236b0ab7a7101}\label{stdlea_8h_aa2f804097b32d561d90236b0ab7a7101}} 
+\index{stdlea.h@{stdlea.h}!allocator\_reset@{allocator\_reset}}
+\index{allocator\_reset@{allocator\_reset}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{allocator\_reset()}{allocator\_reset()}}
+{\footnotesize\ttfamily void allocator\+\_\+reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Resets the heap allocator. 
+
+\begin{DoxyNote}{Note}
+Zeros out the heap and resets the allocation pointer. 
+\end{DoxyNote}
+\mbox{\Hypertarget{stdlea_8h_a9c36d0fe3ec4675cbffdc9b52f5fb399}\label{stdlea_8h_a9c36d0fe3ec4675cbffdc9b52f5fb399}} 
+\index{stdlea.h@{stdlea.h}!malloc@{malloc}}
+\index{malloc@{malloc}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{malloc()}{malloc()}}
+{\footnotesize\ttfamily void $\ast$ malloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Allocates memory from the heap. 
+
+Allocates a block of memory from the static heap.
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The number of bytes to allocate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the allocated memory. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+This is a simple bump allocator. No {\ttfamily free} is available.
+\end{DoxyWarning}
+\begin{DoxyReturn}{Returns}
+A pointer to the allocated memory block. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+This is a simple bump allocator. There is no {\ttfamily free} function. The program will abort if allocation fails. 
+\end{DoxyWarning}
+\mbox{\Hypertarget{stdlea_8h_aee2cb14f63e73acc45996f71718121b1}\label{stdlea_8h_aee2cb14f63e73acc45996f71718121b1}} 
+\index{stdlea.h@{stdlea.h}!memcpy@{memcpy}}
+\index{memcpy@{memcpy}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{memcpy()}{memcpy()}}
+{\footnotesize\ttfamily void $\ast$ memcpy (\begin{DoxyParamCaption}\item[{void $\ast$}]{dest,  }\item[{const void $\ast$}]{src,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Copies a block of memory from a source location to a destination location. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & Pointer to the destination array where the content is to be copied. \\
+\hline
+{\em src} & Pointer to the source of data to be copied. \\
+\hline
+{\em len} & Number of bytes to copy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the destination, which is {\ttfamily dest}. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is a fallback implementation for environments without bulk memory support. Assumes no overlap between src and dest. 
+\end{DoxyNote}
+\mbox{\Hypertarget{stdlea_8h_a4522f53cff2fef09001e4d34227463a9}\label{stdlea_8h_a4522f53cff2fef09001e4d34227463a9}} 
+\index{stdlea.h@{stdlea.h}!memmove@{memmove}}
+\index{memmove@{memmove}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{memmove()}{memmove()}}
+{\footnotesize\ttfamily void $\ast$ memmove (\begin{DoxyParamCaption}\item[{void $\ast$}]{dest,  }\item[{const void $\ast$}]{src,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Moves a block of memory from a source location to a destination location. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & Pointer to the destination array where the content is to be copied. \\
+\hline
+{\em src} & Pointer to the source of data to be copied. \\
+\hline
+{\em len} & Number of bytes to copy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the destination, which is {\ttfamily dest}. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is a fallback implementation for environments without bulk memory support. Handles overlapping memory regions correctly. 
+\end{DoxyNote}
+\mbox{\Hypertarget{stdlea_8h_a946a53e9a701444cf35632fd10b925fc}\label{stdlea_8h_a946a53e9a701444cf35632fd10b925fc}} 
+\index{stdlea.h@{stdlea.h}!memset@{memset}}
+\index{memset@{memset}!stdlea.h@{stdlea.h}}
+\doxysubsubsection{\texorpdfstring{memset()}{memset()}}
+{\footnotesize\ttfamily void $\ast$ memset (\begin{DoxyParamCaption}\item[{void $\ast$}]{dest,  }\item[{int}]{val,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Fills a block of memory with a specified value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & Pointer to the block of memory to fill. \\
+\hline
+{\em val} & Value to be set. The value is passed as an int, but the function fills the block of memory using the unsigned char conversion of this value. \\
+\hline
+{\em len} & Number of bytes to be set to the value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the memory area {\ttfamily dest}. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is a fallback implementation for environments without bulk memory support. 
+\end{DoxyNote}

@@ -1,0 +1,58 @@
+\hypertarget{log_8c}{}\doxysection{src/log.c File Reference}
+\label{log_8c}\index{src/log.c@{src/log.c}}
+{\ttfamily \#include \char`\"{}stdlea.\+h\char`\"{}}\newline
+Include dependency graph for log.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{log_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{log_8c_a9c12333fd24e9aeb24d8b1813f00ea53}{\+\_\+\+\_\+lea\+\_\+log}} (const char $\ast$)
+\item 
+void \mbox{\hyperlink{log_8c_ab8a4280e5de3a026726f24f9c20f2b0e}{lea\+\_\+log}} (const char $\ast$message)
+\begin{DoxyCompactList}\small\item\em Logs a message by copying it to a global buffer and passing it to the host. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{log_8c_a2e48d212f6627a0cb6e48bc35f5c8eb4}{lea\+\_\+log\+\_\+buffer}} \mbox{[}\mbox{\hyperlink{stdlea_8h_a6c6aaa6ce478d84c615f3f56f087ce46}{LEA\+\_\+\+LOG\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]} = \{0\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{log_8c_a9c12333fd24e9aeb24d8b1813f00ea53}\label{log_8c_a9c12333fd24e9aeb24d8b1813f00ea53}} 
+\index{log.c@{log.c}!\_\_lea\_log@{\_\_lea\_log}}
+\index{\_\_lea\_log@{\_\_lea\_log}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{\_\_lea\_log()}{\_\_lea\_log()}}
+{\footnotesize\ttfamily void \+\_\+\+\_\+lea\+\_\+log (\begin{DoxyParamCaption}\item[{const char $\ast$}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{log_8c_ab8a4280e5de3a026726f24f9c20f2b0e}\label{log_8c_ab8a4280e5de3a026726f24f9c20f2b0e}} 
+\index{log.c@{log.c}!lea\_log@{lea\_log}}
+\index{lea\_log@{lea\_log}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{lea\_log()}{lea\_log()}}
+{\footnotesize\ttfamily void lea\+\_\+log (\begin{DoxyParamCaption}\item[{const char $\ast$}]{message }\end{DoxyParamCaption})}
+
+
+
+Logs a message by copying it to a global buffer and passing it to the host. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The null-\/terminated string to log. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This function uses a global buffer {\ttfamily lea\+\_\+log\+\_\+buffer}. If the message is longer than the buffer, it will be truncated. The buffer is cleared after the log message is passed to the host. A NULL message is treated as an empty string. 
+\end{DoxyNote}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{log_8c_a2e48d212f6627a0cb6e48bc35f5c8eb4}\label{log_8c_a2e48d212f6627a0cb6e48bc35f5c8eb4}} 
+\index{log.c@{log.c}!lea\_log\_buffer@{lea\_log\_buffer}}
+\index{lea\_log\_buffer@{lea\_log\_buffer}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{lea\_log\_buffer}{lea\_log\_buffer}}
+{\footnotesize\ttfamily char lea\+\_\+log\+\_\+buffer\mbox{[}\mbox{\hyperlink{stdlea_8h_a6c6aaa6ce478d84c615f3f56f087ce46}{LEA\+\_\+\+LOG\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]} = \{0\}}
+

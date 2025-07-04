@@ -1,0 +1,11 @@
+prefix=@prefix@
+libdir=@libdir@
+includedir=@includedir@
+version=@version@
+
+Name: stdlea-vm
+Description: Minimal Standard Library for Lea Smart Contracts (WASM LEA Build)
+Version: ${version}
+Cflags: -I${includedir}/stdlea -DENV_WASM_LEA
+Libs: -L${libdir} -lstdlea-lea -flto
+

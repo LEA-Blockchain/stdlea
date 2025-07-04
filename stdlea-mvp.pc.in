@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=${prefix}
+libdir=@libdir@
+includedir=@includedir@
+
+Name: stdlea-mvp
+Description: The Lea Standard Library (WASM MVP)
+Version: @version@
+Libs: -L${libdir} -lstdlea-mvp
+Cflags: -I${includedir}

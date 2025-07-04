@@ -1,0 +1,22 @@
+\hypertarget{c__feature__check_8h_source}{}\doxysection{c\+\_\+feature\+\_\+check.\+h}
+\label{c__feature__check_8h_source}\index{include/c\_feature\_check.h@{include/c\_feature\_check.h}}
+\mbox{\hyperlink{c__feature__check_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef C\_FEATURE\_CHECK\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define C\_FEATURE\_CHECK\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#if !defined(\_\_STDC\_VERSION\_\_) || \_\_STDC\_VERSION\_\_ < 201112L}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#error "{}C11 or later is required for \_Static\_assert"{}}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#if !defined(\_\_has\_builtin)}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#error "{}\_\_has\_builtin is required to check for \_\_builtin\_types\_compatible\_p"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#if !\_\_has\_builtin(\_\_builtin\_types\_compatible\_p)}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#error "{}\_\_builtin\_types\_compatible\_p is not supported by this compiler"{}}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// C\_FEATURE\_CHECK\_H}}
+
+\end{DoxyCode}

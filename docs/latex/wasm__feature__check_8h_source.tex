@@ -1,0 +1,105 @@
+\hypertarget{wasm__feature__check_8h_source}{}\doxysection{wasm\+\_\+feature\+\_\+check.\+h}
+\label{wasm__feature__check_8h_source}\index{include/wasm\_feature\_check.h@{include/wasm\_feature\_check.h}}
+\mbox{\hyperlink{wasm__feature__check_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef WASM\_FEATURE\_CHECK\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define WASM\_FEATURE\_CHECK\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#if defined(ENV\_WASM\_MVP)}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifdef \_\_wasm\_nontrapping\_fptoint\_\_}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#error \(\backslash\)}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{    "{}Wasm feature 'nontrapping-\/fptoint' MUST BE DISABLED in ENV\_WASM\_MVP mode! (\_\_wasm\_nontrapping\_fptoint\_\_ defined)"{}}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#ifdef \_\_wasm\_sign\_ext\_\_}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#error "{}Wasm feature 'sign-\/ext' MUST BE DISABLED in ENV\_WASM\_MVP mode! (\_\_wasm\_sign\_ext\_\_ defined)"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#ifdef \_\_wasm\_bulk\_memory\_\_}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#error "{}Wasm feature 'bulk-\/memory' MUST BE DISABLED in ENV\_WASM\_MVP mode! (\_\_wasm\_bulk\_memory\_\_ defined)"{}}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#ifdef \_\_wasm\_reference\_types\_\_}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#error "{}Wasm feature 'reference-\/types' MUST BE DISABLED in ENV\_WASM\_MVP mode! (\_\_wasm\_reference\_types\_\_ defined)"{}}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifdef \_\_wasm\_simd128\_\_}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#error "{}Wasm feature 'simd128' MUST BE DISABLED in ENV\_WASM\_MVP mode! (\_\_wasm\_simd128\_\_ defined)"{}}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#ifdef \_\_wasm\_tail\_call\_\_}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#error "{}Wasm feature 'tail-\/call' MUST BE DISABLED in ENV\_WASM\_MVP mode! (\_\_wasm\_tail\_call\_\_ defined)"{}}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#ifdef \_\_wasm\_multivalue\_\_}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#error "{}Wasm feature 'multivalue' MUST BE DISABLED in ENV\_WASM\_MVP mode! (\_\_wasm\_multivalue\_\_ defined)"{}}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#ifdef \_\_wasm\_mutable\_globals\_\_}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#error "{}Wasm feature 'mutable-\/globals' MUST BE DISABLED in ENV\_WASM\_MVP mode! (\_\_wasm\_mutable\_globals\_\_ defined)"{}}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#ifdef \_\_wasm\_multimemory\_\_}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#error "{}Wasm feature 'multimemory' MUST BE DISABLED in ENV\_WASM\_MVP mode! (\_\_wasm\_multimemory\_\_ defined)"{}}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#ifdef \_\_wasm\_memory64\_\_}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#error "{}Wasm feature 'memory64' MUST BE DISABLED in ENV\_WASM\_MVP mode! (\_\_wasm\_memory64\_\_ defined)"{}}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#ifdef \_\_wasm\_exception\_handling\_\_}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#error "{}Wasm feature 'exception-\/handling' MUST BE DISABLED in ENV\_WASM\_MVP mode! (\_\_wasm\_exception\_handling\_\_ defined)"{}}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#ifdef \_\_wasm\_threads\_\_}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#error "{}Wasm feature 'threads' MUST BE DISABLED in ENV\_WASM\_MVP mode! (\_\_wasm\_threads\_\_ defined)"{}}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#elif defined(ENV\_WASM\_VM)}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#ifndef \_\_wasm\_nontrapping\_fptoint\_\_}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#error \(\backslash\)}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{    "{}Required Wasm feature 'nontrapping-\/fptoint' is NOT enabled in ENV\_WASM\_VM mode! (Macro \_\_wasm\_nontrapping\_fptoint\_\_ not defined)"{}}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#ifndef \_\_wasm\_sign\_ext\_\_}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#error "{}Required Wasm feature 'sign-\/ext' is NOT enabled in ENV\_WASM\_VM mode! (Macro \_\_wasm\_sign\_ext\_\_ not defined)"{}}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#ifndef \_\_wasm\_bulk\_memory\_\_}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#error \(\backslash\)}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{    "{}Required Wasm feature 'bulk-\/memory' is NOT enabled in ENV\_WASM\_VM mode! (Macro \_\_wasm\_bulk\_memory\_\_ not defined)"{}}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#ifndef \_\_wasm\_reference\_types\_\_}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#error \(\backslash\)}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{    "{}Required Wasm feature 'reference-\/types' is NOT enabled in ENV\_WASM\_VM mode! (Macro \_\_wasm\_reference\_types\_\_ not defined)"{}}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#ifndef \_\_wasm\_simd128\_\_}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#error "{}Required Wasm feature 'simd128' is NOT enabled in ENV\_WASM\_VM mode! (Macro \_\_wasm\_simd128\_\_ not defined)"{}}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#ifndef \_\_wasm\_tail\_call\_\_}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#error "{}Required Wasm feature 'tail-\/call' is NOT enabled in ENV\_WASM\_VM mode! (Macro \_\_wasm\_tail\_call\_\_ not defined)"{}}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#ifndef \_\_wasm\_multivalue\_\_}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#error "{}Required Wasm feature 'multivalue' is NOT enabled in ENV\_WASM\_VM mode! (Macro \_\_wasm\_multivalue\_\_ not defined)"{}}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{comment}{/* -\/-\/-\/ Unwanted Wasm Features (Error if macro IS defined) -\/-\/-\/ */}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#ifdef \_\_wasm\_mutable\_globals\_\_}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#error \(\backslash\)}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{    "{}Unwanted Wasm feature 'mutable-\/globals' IS enabled in ENV\_WASM\_VM mode! (Macro \_\_wasm\_mutable\_globals\_\_ defined). Use -\/mno-\/mutable-\/globals or similar."{}}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#ifdef \_\_wasm\_multimemory\_\_}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#error \(\backslash\)}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{    "{}Unwanted Wasm feature 'multimemory' IS enabled in ENV\_WASM\_VM mode! (Macro \_\_wasm\_multimemory\_\_ defined). Check compiler flags."{}}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#ifdef \_\_wasm\_memory64\_\_}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#if defined(\_\_wasm32\_\_)}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#error \(\backslash\)}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{    "{}Unwanted Wasm feature 'memory64' IS enabled for wasm32 target in ENV\_WASM\_VM mode! (Macro \_\_wasm\_memory64\_\_ defined). Check compiler flags."{}}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#ifdef \_\_wasm\_exception\_handling\_\_}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#error \(\backslash\)}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{    "{}Unwanted Wasm feature 'exception-\/handling' IS enabled in ENV\_WASM\_VM mode! (Macro \_\_wasm\_exception\_handling\_\_ defined). Check compiler flags."{}}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#ifdef \_\_wasm\_threads\_\_}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#error \(\backslash\)}}
+\DoxyCodeLine{90 \textcolor{preprocessor}{    "{}Unwanted Wasm feature 'threads' IS enabled in ENV\_WASM\_VM mode! (Macro \_\_wasm\_threads\_\_ defined). Check compiler flags."{}}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#error \(\backslash\)}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{    "{}Compiling for Wasm target (\_\_wasm32\_\_ or \_\_wasm64\_\_) requires either ENV\_WASM\_MVP or ENV\_WASM\_VM to be defined."{}}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// End of ENV\_WASM\_MVP / ENV\_WASM\_VM / \#error checks}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// WASM\_FEATURE\_CHECK\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,154 @@
+\hypertarget{stdlea_8h_source}{}\doxysection{stdlea.\+h}
+\label{stdlea_8h_source}\index{include/stdlea.h@{include/stdlea.h}}
+\mbox{\hyperlink{stdlea_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef STDLEA\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define STDLEA\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{c__feature__check_8h}{c\_feature\_check.h}}"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{wasm__feature__check_8h}{wasm\_feature\_check.h}}"{}}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{comment}{// -\/-\/-\/ Standard Integer Types -\/-\/-\/}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{16 \textcolor{comment}{// -\/-\/-\/ Standard Integer Types -\/-\/-\/}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{20 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{stdlea_8h_aba7bc1797add20fe3efdf37ced1182c5}{uint8\_t}}; }
+\DoxyCodeLine{21 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{stdlea_8h_a273cf69d639a59973b6019625df33e30}{uint16\_t}}; }
+\DoxyCodeLine{22 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{stdlea_8h_a435d1572bf3f880d55459d9805097f62}{uint32\_t}}; }
+\DoxyCodeLine{23 \textcolor{keyword}{typedef} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \mbox{\hyperlink{stdlea_8h_aaa5d1cd013383c889537491c3cfd9aad}{uint64\_t}}; }
+\DoxyCodeLine{25 \textcolor{keyword}{typedef} \textcolor{keywordtype}{signed} \textcolor{keywordtype}{char} \mbox{\hyperlink{stdlea_8h_aef44329758059c91c76d334e8fc09700}{int8\_t}}; }
+\DoxyCodeLine{26 \textcolor{keyword}{typedef} \textcolor{keywordtype}{signed} \textcolor{keywordtype}{short} \mbox{\hyperlink{stdlea_8h_a269259c924dce846340ddbb810db2e3c}{int16\_t}}; }
+\DoxyCodeLine{27 \textcolor{keyword}{typedef} \textcolor{keywordtype}{signed} \textcolor{keywordtype}{int} \mbox{\hyperlink{stdlea_8h_ab1967d8591af1a4e48c37fd2b0f184d0}{int32\_t}}; }
+\DoxyCodeLine{28 \textcolor{keyword}{typedef} \textcolor{keywordtype}{signed} \textcolor{keywordtype}{long} \textcolor{keywordtype}{long} \mbox{\hyperlink{stdlea_8h_adec1df1b8b51cb32b77e5b86fff46471}{int64\_t}}; }
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#ifndef UINT8\_MAX}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define UINT8\_MAX (255U)}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#ifndef INT8\_MAX}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define INT8\_MAX (127)}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#ifndef INT8\_MIN}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#define INT8\_MIN (-\/128)}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#ifndef UINT16\_MAX}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#define UINT16\_MAX (65535U)}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#ifndef INT16\_MAX}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#define INT16\_MAX (32767)}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#ifndef INT16\_MIN}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#define INT16\_MIN (-\/32768)}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#ifndef UINT32\_MAX}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#define UINT32\_MAX (4294967295U)}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#ifndef INT32\_MAX}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#define INT32\_MAX (2147483647)}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#ifndef INT32\_MIN}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#define INT32\_MIN (-\/2147483647 -\/ 1)}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#ifndef UINT64\_MAX}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define UINT64\_MAX (18446744073709551615ULL)}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#ifndef INT64\_MAX}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define INT64\_MAX (9223372036854775807LL)}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#ifndef INT64\_MIN}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define INT64\_MIN (-\/9223372036854775807LL -\/ 1)}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#ifndef bool}}
+\DoxyCodeLine{77 \textcolor{keyword}{typedef} \_Bool \mbox{\hyperlink{stdlea_8h_afaa87723b8417d40fcf45b7330261ef9}{bool}}; }
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#ifndef true}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#define true ((bool)1)}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#ifndef false}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#define false ((bool)0)}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#if defined(\_\_wasm64\_\_) || (defined(\_\_SIZEOF\_POINTER\_\_) \&\& \_\_SIZEOF\_POINTER\_\_ == 8)}}
+\DoxyCodeLine{93 \textcolor{comment}{/* -\/-\/-\/ 64-\/bit Wasm -\/-\/-\/ */}}
+\DoxyCodeLine{95 \textcolor{keyword}{typedef} \mbox{\hyperlink{stdlea_8h_aaa5d1cd013383c889537491c3cfd9aad}{uint64\_t}} uintptr\_t;}
+\DoxyCodeLine{97 \textcolor{keyword}{typedef} \mbox{\hyperlink{stdlea_8h_adec1df1b8b51cb32b77e5b86fff46471}{int64\_t}} intptr\_t;}
+\DoxyCodeLine{99 \textcolor{keyword}{typedef} \mbox{\hyperlink{stdlea_8h_aaa5d1cd013383c889537491c3cfd9aad}{uint64\_t}} size\_t;}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 \textcolor{preprocessor}{\#ifndef UINTPTR\_MAX}}
+\DoxyCodeLine{102 \textcolor{preprocessor}{\#define UINTPTR\_MAX UINT64\_MAX}}
+\DoxyCodeLine{103 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{104 \textcolor{preprocessor}{\#ifndef INTPTR\_MAX}}
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#define INTPTR\_MAX INT64\_MAX}}
+\DoxyCodeLine{106 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#ifndef INTPTR\_MIN}}
+\DoxyCodeLine{108 \textcolor{preprocessor}{\#define INTPTR\_MIN INT64\_MIN}}
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#ifndef SIZE\_MAX}}
+\DoxyCodeLine{111 \textcolor{preprocessor}{\#define SIZE\_MAX UINT64\_MAX}}
+\DoxyCodeLine{112 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 \textcolor{preprocessor}{\#elif defined(\_\_wasm32\_\_) || (defined(\_\_SIZEOF\_POINTER\_\_) \&\& \_\_SIZEOF\_POINTER\_\_ == 4)}}
+\DoxyCodeLine{115 \textcolor{comment}{/* -\/-\/-\/ 32-\/bit Wasm -\/-\/-\/ */}}
+\DoxyCodeLine{117 \textcolor{keyword}{typedef} \mbox{\hyperlink{stdlea_8h_a435d1572bf3f880d55459d9805097f62}{uint32\_t}} uintptr\_t;}
+\DoxyCodeLine{119 \textcolor{keyword}{typedef} \mbox{\hyperlink{stdlea_8h_ab1967d8591af1a4e48c37fd2b0f184d0}{int32\_t}} intptr\_t;}
+\DoxyCodeLine{121 \textcolor{keyword}{typedef} \mbox{\hyperlink{stdlea_8h_a435d1572bf3f880d55459d9805097f62}{uint32\_t}} size\_t;}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#ifndef UINTPTR\_MAX}}
+\DoxyCodeLine{124 \textcolor{preprocessor}{\#define UINTPTR\_MAX UINT32\_MAX}}
+\DoxyCodeLine{125 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{126 \textcolor{preprocessor}{\#ifndef INTPTR\_MAX}}
+\DoxyCodeLine{127 \textcolor{preprocessor}{\#define INTPTR\_MAX INT32\_MAX}}
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{\#ifndef INTPTR\_MIN}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{\#define INTPTR\_MIN INT32\_MIN}}
+\DoxyCodeLine{131 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{132 \textcolor{preprocessor}{\#ifndef SIZE\_MAX}}
+\DoxyCodeLine{133 \textcolor{preprocessor}{\#define SIZE\_MAX UINT32\_MAX}}
+\DoxyCodeLine{134 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{137 \textcolor{preprocessor}{\#error "{}Wasm target detected, but cannot determine pointer size (require wasm32 or wasm64)."{}}}
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140 \textcolor{preprocessor}{\#ifndef NULL}}
+\DoxyCodeLine{142 \textcolor{preprocessor}{\#define NULL ((void *)0)}}
+\DoxyCodeLine{143 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{153 \textcolor{preprocessor}{\#define LEA\_EXPORT(FUNC\_NAME) \_\_attribute\_\_((export\_name(\#FUNC\_NAME), visibility("{}default"{}})))}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{161 \textcolor{preprocessor}{\#define LEA\_IMPORT(PROGRAM\_ID, FUNC\_NAME) \_\_attribute\_\_((import\_module(\#PROGRAM\_ID), import\_name(\#FUNC\_NAME))) extern}}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{168 \textcolor{preprocessor}{\#define IF\_LEA\_EXPORT(FUNC\_NAME) LEA\_EXPORT(FUNC\_NAME)}}
+\DoxyCodeLine{173 \textcolor{preprocessor}{\#ifdef ENABLE\_LEA\_LOG}}
+\DoxyCodeLine{180 \textcolor{keywordtype}{void} \mbox{\hyperlink{log_8c_ab8a4280e5de3a026726f24f9c20f2b0e}{lea\_log}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *message);}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{188 \textcolor{preprocessor}{\#define lea\_abort(ERROR\_MESSAGE)          \(\backslash\)}}
+\DoxyCodeLine{189 \textcolor{preprocessor}{    do                                    \(\backslash\)}}
+\DoxyCodeLine{190 \textcolor{preprocessor}{    \{                                     \(\backslash\)}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{        lea\_log("{}ABORT: "{}} ERROR\_MESSAGE); \(\backslash\)}
+\DoxyCodeLine{192         \_\_builtin\_trap();                 \(\backslash\)}
+\DoxyCodeLine{193     \} while (0)}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{201 \textcolor{preprocessor}{\#define LEA\_LOG(MSG) lea\_log(MSG)}}
+\DoxyCodeLine{202 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{209 \textcolor{preprocessor}{\#define LEA\_LOG(MSG) ((void)0)}}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{217 \textcolor{preprocessor}{\#define lea\_abort(ERROR\_MESSAGE) \_\_builtin\_trap()}}
+\DoxyCodeLine{218 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{223 \textcolor{keywordtype}{void} *\mbox{\hyperlink{stdlea_8h_a946a53e9a701444cf35632fd10b925fc}{memset}}(\textcolor{keywordtype}{void} *dest, \textcolor{keywordtype}{int} val, \textcolor{keywordtype}{size\_t} len);}
+\DoxyCodeLine{224 \textcolor{keywordtype}{void} *\mbox{\hyperlink{stdlea_8h_aee2cb14f63e73acc45996f71718121b1}{memcpy}}(\textcolor{keywordtype}{void} *dest, \textcolor{keyword}{const} \textcolor{keywordtype}{void} *src, \textcolor{keywordtype}{size\_t} len);}
+\DoxyCodeLine{225 \textcolor{keywordtype}{void} *\mbox{\hyperlink{stdlea_8h_a4522f53cff2fef09001e4d34227463a9}{memmove}}(\textcolor{keywordtype}{void} *dest, \textcolor{keyword}{const} \textcolor{keywordtype}{void} *src, \textcolor{keywordtype}{size\_t} len);}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{233 \textcolor{keywordtype}{void} *\mbox{\hyperlink{stdlea_8h_a9c36d0fe3ec4675cbffdc9b52f5fb399}{malloc}}(\textcolor{keywordtype}{size\_t} size);}
+\DoxyCodeLine{234 }
+\DoxyCodeLine{239 \textcolor{keywordtype}{void} \mbox{\hyperlink{stdlea_8h_aa2f804097b32d561d90236b0ab7a7101}{allocator\_reset}}();}
+\DoxyCodeLine{247 \textcolor{preprocessor}{\#define LEA\_HEAP\_SIZE 65536 }\textcolor{comment}{// 64 KiB heap size}}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{252 \textcolor{preprocessor}{\#define LEA\_LOG\_BUFFER\_SIZE 512}}
+\DoxyCodeLine{255 \textcolor{preprocessor}{\#ifndef SIZE\_MAX}}
+\DoxyCodeLine{259 \textcolor{preprocessor}{\#define SIZE\_MAX ((size\_t)-\/1)}}
+\DoxyCodeLine{260 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// STDLEA\_H}}
+
+\end{DoxyCode}
