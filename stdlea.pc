@@ -1,0 +1,10 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=/usr/local/lib
+includedir=/usr/local/include
+
+Name: stdlea
+Description: The Lea Standard Library
+Version: 1.0.0
+Libs: -L${libdir} -lstdlea
+Cflags: -I${includedir}

@@ -1,5 +1,9 @@
-#ifndef C_FEATURE_CHECK_H
-#define C_FEATURE_CHECK_H
+#ifndef CC_H
+#define CC_H
+
+#if !defined(__clang__)
+#error "Use CLANG for LEA"
+#endif
 
 #if !defined(__STDC_VERSION__) || __STDC_VERSION__ < 201112L
 #error "C11 or later is required for _Static_assert"
@@ -13,4 +17,4 @@
 #error "__builtin_types_compatible_p is not supported by this compiler"
 #endif
 
-#endif // C_FEATURE_CHECK_H
+#endif // CC_H

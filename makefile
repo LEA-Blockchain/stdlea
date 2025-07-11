@@ -1,76 +1,78 @@
-# Compiler and flags
 CLANG := clang
 AR := llvm-ar
 
-# WASM flags
-CFLAGS_WASM_BASE = --target=wasm32 -ffreestanding -nostdlib -Iinclude -flto -Os
-CFLAGS_WASM_MVP = $(CFLAGS_WASM_BASE) -DENV_WASM_MVP
-CFLAGS_WASM_VM = $(CFLAGS_WASM_BASE) -DENV_WASM_VM \
-                  -mnontrapping-fptoint -mbulk-memory -msign-ext -msimd128 \
-                  -mtail-call -mreference-types -matomics -mmultivalue \
-                  -Xclang -target-abi -Xclang experimental-mv
+VERSION := 1.0.0
 
-# Source and object files
+CFLAGS_WASM = --target=wasm32 -ffreestanding -nostdlib -Iinclude -flto -Oz \
+              -mbulk-memory -msign-ext -mmultivalue \
+              -Wall -Wextra -Wpedantic -Werror \
+              -Wshadow -Wconversion -Wsign-conversion -Wcast-align -Wunused -Wundef
+
 SRC := $(wildcard src/*.c)
-OBJ_VM := $(SRC:.c=.vm.bc)
-OBJ_MVP := $(SRC:.c=.mvp.bc)
+OBJ := $(SRC:.c=.o)
 
-# Library names
-LIB_VM := libstdlea-vm.a
-LIB_MVP := libstdlea-mvp.a
+LIB := libstdlea.a
+PC_FILE := stdlea.pc
 
-# --- Installation ---
 PREFIX ?= /usr/local
 INCLUDEDIR = $(PREFIX)/include
 LIBDIR = $(PREFIX)/lib
+PKGCONFIGDIR = $(LIBDIR)/pkgconfig
 
-# Phony targets
-.PHONY: all clean docs clean-docs install uninstall
+.PHONY: all clean docs clean-docs install uninstall format check-unicode
 
-all: $(LIB_MVP) $(LIB_VM)
+all: format $(LIB) $(PC_FILE)
 
-# Build the Lea virtual machine library
-$(LIB_VM): $(OBJ_VM)
+$(LIB): $(OBJ)
 	$(AR) rcs $@ $^
 
-# Build the Lea MVP library
-$(LIB_MVP): $(OBJ_MVP)
-	$(AR) rcs $@ $^
+%.o: %.c include/stdlea.h
+	$(CLANG) $(CFLAGS_WASM) -c $< -o $@
 
-# Compile .c to .vm.bc
-src/%.vm.bc: src/%.c include/stdlea.h
-	$(CLANG) $(CFLAGS_WASM_VM) -c $< -o $@
+$(PC_FILE): stdlea.pc.in
+	sed -e "s|@prefix@|$(PREFIX)|" \
+	    -e "s|@libdir@|$(LIBDIR)|" \
+	    -e "s|@includedir@|$(INCLUDEDIR)|" \
+	    -e "s|@version@|$(VERSION)|" \
+	    $< > $@
 
-# Compile .c to .mvp.bc
-src/%.mvp.bc: src/%.c include/stdlea.h
-	$(CLANG) $(CFLAGS_WASM_MVP) -c $< -o $@
+format: check-unicode
+	@echo "Formatting source files..."
+	clang-format -i $(SRC) include/*.h
 
-# Clean up build artifacts
+check-unicode:
+	@echo "Checking for non-ASCII characters..."
+	@if grep --color=auto -P -n "[^\x00-\x7F]" src/*.c include/*.h > /dev/null; then \
+	    echo "❌ Unicode characters detected in source files!"; \
+	    grep --color=always -P -n "[^\x00-\x7F]" src/*.c include/*.h; \
+	    exit 1; \
+	fi
+
 clean:
-	rm -f $(OBJ_VM) $(OBJ_MVP) $(LIB_VM) $(LIB_MVP)
+	rm -f $(OBJ) $(LIB) $(PC_FILE)
 
-# Generate documentation
 docs:
 	doxygen Doxyfile
 
-# Clean up documentation
 clean-docs:
 	rm -rf docs
-
-# --- Installation ---
 
 install: all
 	@echo "Installing headers to $(DESTDIR)$(INCLUDEDIR)/stdlea..."
 	install -d $(DESTDIR)$(INCLUDEDIR)/stdlea
-	install -m 644 include/* $(DESTDIR)$(INCLUDEDIR)/stdlea/
+	install -d $(DESTDIR)$(INCLUDEDIR)/stdlea/feature
+	install -m 644 include/*.h $(DESTDIR)$(INCLUDEDIR)/stdlea/
+	install -m 644 include/feature/* $(DESTDIR)$(INCLUDEDIR)/stdlea/feature/
 	@echo "Installing libraries to $(DESTDIR)$(LIBDIR)..."
 	install -d $(DESTDIR)$(LIBDIR)
-	install -m 644 $(LIB_MVP) $(LIB_VM) $(DESTDIR)$(LIBDIR)/
+	install -m 644 $(LIB) $(DESTDIR)$(LIBDIR)/
+	@echo "Installing pkg-config file to $(DESTDIR)$(PKGCONFIGDIR)..."
+	install -d $(DESTDIR)$(PKGCONFIGDIR)
+	install -m 644 $(PC_FILE) $(DESTDIR)$(PKGCONFIGDIR)/
 
 uninstall:
 	@echo "Uninstalling stdlea..."
 	rm -rf $(DESTDIR)$(INCLUDEDIR)/stdlea
-	rm -f $(DESTDIR)$(LIBDIR)/$(LIB_MVP)
-	rm -f $(DESTDIR)$(LIBDIR)/$(LIB_VM)
+	rm -f $(DESTDIR)$(LIBDIR)/$(LIB)
+	rm -f $(DESTDIR)$(PKGCONFIGDIR)/$(PC_FILE)
 	@echo "Uninstall complete."
-

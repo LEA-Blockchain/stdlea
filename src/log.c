@@ -1,4 +1,5 @@
 #include "stdlea.h"
+#include "string.h"
 
 LEA_IMPORT(env, __lea_log)
 void __lea_log(const char *);
@@ -14,11 +15,9 @@ char lea_log_buffer[LEA_LOG_BUFFER_SIZE] = {0};
  *       after the log message is passed to the host. A NULL message is
  *       treated as an empty string.
  */
-void lea_log(const char *message)
-{
+void lea_log(const char *message) {
     // Handle NULL message by treating it as an empty string
-    if (!message)
-    {
+    if (!message) {
         lea_log_buffer[0] = '\0';
         return;
     }
@@ -27,8 +26,7 @@ void lea_log(const char *message)
 
     // Copy characters while the source has characters and the buffer has space.
     // We stop at LEA_LOG_BUFFER_SIZE - 1 to guarantee space for the null terminator.
-    while (message[i] != '\0' && i < (LEA_LOG_BUFFER_SIZE - 1))
-    {
+    while (message[i] != '\0' && i < (LEA_LOG_BUFFER_SIZE - 1)) {
         lea_log_buffer[i] = message[i];
         i++;
     }
