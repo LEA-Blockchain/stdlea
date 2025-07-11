@@ -8,21 +8,20 @@ The official standard library (`stdlea`) for developing smart contracts on the L
 
 ## Features
 
-*   **Core Types:** Standard integer types, pointers, and boolean values.
-*   **Memory Management:** A simple bump allocator (`malloc`, `memset`, `memcpy`, `memmove`).
+*   **Core Types:** Standard C integer types, pointers, and boolean values.
+*   **Memory Management:** A simple bump allocator (`malloc`, `memset`, `memcpy`, `memmove`, `memcmp`).
+*   **String Formatting:** `printf` and `snprintf` for flexible string formatting.
 *   **Logging:** A basic logging facility (`lea_log`).
 
-## Building the Libraries
+## Building the Library
 
-To build the `stdlea` libraries, you will need `clang` and `llvm-ar`. Once you have the prerequisites, run the following command:
+To build the `stdlea` library, you will need `clang` and `llvm-ar`. Once you have the prerequisites, run the following command:
 
 ```bash
 make
 ```
 
-This will produce two libraries:
-*   `libstdlea-mvp.a`: For the Wasm MVP target.
-*   `libstdlea-vm.a`: For the Lea VM target.
+This will produce the `libstdlea.a` library.
 
 ## Building the Documentation
 
@@ -45,4 +44,3 @@ Developed by Allwin Ketnawang.
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-(base)
