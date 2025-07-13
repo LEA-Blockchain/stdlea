@@ -11,12 +11,10 @@
  * @param len The number of bytes to be set to the value.
  * @return A pointer to the memory area `dest`.
  */
-void *memset(void *dest, int val, size_t len)
-{
+void *memset(void *dest, int val, size_t len) {
     unsigned char *ptr = dest;
     unsigned char c = (unsigned char)val;
-    for (size_t i = 0; i < len; i++)
-    {
+    for (size_t i = 0; i < len; i++) {
         ptr[i] = c;
     }
     return dest;
@@ -30,12 +28,10 @@ void *memset(void *dest, int val, size_t len)
  * @return A pointer to the destination.
  * @note The memory areas should not overlap. Use memmove for overlapping memory.
  */
-void *memcpy(void *dest, const void *src, size_t len)
-{
+void *memcpy(void *dest, const void *src, size_t len) {
     unsigned char *d = dest;
     const unsigned char *s = src;
-    for (size_t i = 0; i < len; i++)
-    {
+    for (size_t i = 0; i < len; i++) {
         d[i] = s[i];
     }
     return dest;
@@ -48,31 +44,24 @@ void *memcpy(void *dest, const void *src, size_t len)
  * @param len The number of bytes to move.
  * @return A pointer to the destination.
  */
-void *memmove(void *dest, const void *src, size_t len)
-{
+void *memmove(void *dest, const void *src, size_t len) {
     unsigned char *d = dest;
     const unsigned char *s = src;
 
-    if (d == s)
-    {
+    if (d == s) {
         // Source and destination are the same, no-op.
         return dest;
     }
 
-    if (d < s)
-    {
+    if (d < s) {
         // Destination is before the source, so a forward copy is safe.
-        for (size_t i = 0; i < len; i++)
-        {
+        for (size_t i = 0; i < len; i++) {
             d[i] = s[i];
         }
-    }
-    else
-    {
+    } else {
         // Destination is after the source, so a backward copy is required
         // to prevent overwriting data before it's been copied.
-        for (size_t i = len; i != 0; i--)
-        {
+        for (size_t i = len; i != 0; i--) {
             d[i - 1] = s[i - 1];
         }
     }
@@ -88,14 +77,11 @@ void *memmove(void *dest, const void *src, size_t len)
  * is found, respectively, to be less than, to match, or be greater than the first `n` bytes of
  * `s2`.
  */
-int memcmp(const void *s1, const void *s2, size_t n)
-{
+int memcmp(const void *s1, const void *s2, size_t n) {
     const unsigned char *p1 = s1;
     const unsigned char *p2 = s2;
-    for (size_t i = 0; i < n; i++)
-    {
-        if (p1[i] != p2[i])
-        {
+    for (size_t i = 0; i < n; i++) {
+        if (p1[i] != p2[i]) {
             // Return the difference of the first non-matching bytes
             return p1[i] - p2[i];
         }
@@ -108,11 +94,9 @@ int memcmp(const void *s1, const void *s2, size_t n)
  * @param s The null-terminated string to be measured.
  * @return The number of characters in the string, excluding the null-terminator.
  */
-size_t strlen(const char *s)
-{
+size_t strlen(const char *s) {
     size_t i = 0;
-    while (s[i])
-    {
+    while (s[i]) {
         i++;
     }
     return i;

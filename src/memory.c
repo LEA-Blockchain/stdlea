@@ -1,5 +1,6 @@
 #include "stddef.h"
 #include "stdlea.h"
+#include "string.h"
 #include <stdint.h>
 
 // --- Heap Implementation ---
