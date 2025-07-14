@@ -1,8 +1,8 @@
 #ifndef STDLEA_H
 #define STDLEA_H
-#include "feature_check.h"
 
 #include "stddef.h"
+#include <stdint.h>
 
 /**
  * @def LEA_EXPORT(FUNC_NAME)
@@ -26,59 +26,42 @@
  * @param FUNC_NAME The name of the function.
  */
 #define IF_LEA_EXPORT(FUNC_NAME) LEA_EXPORT(FUNC_NAME)
-/** @} */
 
-/** @name Logging and Aborting */
-/** @{ */
+/**
+ * @def LEA_ABORT()
+ * @brief Aborts the program execution immediately.
+ * @note This macro signals an unrecoverable error to the host environment,
+ *       providing the current line number, and then halts execution.
+ */
+LEA_IMPORT(env, __lea_abort) void __lea_abort(int);
+#define LEA_ABORT()                                                                                \
+    do {                                                                                           \
+        __lea_abort(__LINE__);                                                                     \
+        __builtin_trap();                                                                          \
+    } while (0)
+
 #ifdef ENABLE_LEA_LOG
 /**
  * @brief Logs a message to the host environment.
  * @param message The null-terminated string to log.
  * @note This function is only available when `ENABLE_LEA_LOG` is defined.
- *       It uses a global buffer and may truncate long messages.
  */
 void lea_log(const char *message);
 
 /**
- * @def lea_abort(ERROR_MESSAGE)
- * @brief Aborts execution after logging a message.
- * @param ERROR_MESSAGE The error message to log before aborting.
- * @note This macro calls `lea_log` and then executes a trap instruction.
- */
-#define lea_abort(ERROR_MESSAGE)                                                                   \
-    do {                                                                                           \
-        lea_log("ABORT: " ERROR_MESSAGE);                                                          \
-        __builtin_trap();                                                                          \
-    } while (0)
-
-/**
  * @def LEA_LOG(MSG)
- * @brief Logs a message.
- * @param MSG The message to log.
- * @note This is a convenience macro for `lea_log`.
+ * @brief A macro to log a message.
+ * @param MSG The message string to log.
+ * @note This macro compiles to nothing if `ENABLE_LEA_LOG` is not defined.
  */
 #define LEA_LOG(MSG) lea_log(MSG)
 #else
-/**
- * @def LEA_LOG(MSG)
- * @brief A no-op logging macro.
- * @param MSG The message, which is ignored.
- * @note This macro does nothing when `ENABLE_LEA_LOG` is not defined.
- */
 #define LEA_LOG(MSG) ((void)0)
+#endif // ENABLE_LEA_LOG
 
-/**
- * @def lea_abort(ERROR_MESSAGE)
- * @brief Aborts execution immediately.
- * @param ERROR_MESSAGE The message, which is ignored.
- * @note This macro executes a trap instruction without logging.
- */
-#define lea_abort(ERROR_MESSAGE) __builtin_trap()
-#endif
-
+#ifndef DISABLE_BUMP_ALLOCATOR
 /**
  * @brief Resets the heap allocator.
- * @return void
  * @note Zeros out the heap and resets the allocation pointer.
  */
 void allocator_reset();
@@ -90,9 +73,6 @@ void allocator_reset();
  */
 #define LEA_HEAP_SIZE 1048576 // 1 MiB heap size
 
-/** @def LEA_LOG_BUFFER_SIZE
- *  @brief The size of the buffer used for logging messages.
- */
-#define LEA_LOG_BUFFER_SIZE 512
+#endif // DISABLE_BUMP_ALLOCATOR
 
 #endif // STDLEA_H

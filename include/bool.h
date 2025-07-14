@@ -1,6 +1,5 @@
 #ifndef STDBOOL_H
 #define STDBOOL_H
-#include "feature_check.h"
 
 #ifndef __bool_true_false_are_defined
 

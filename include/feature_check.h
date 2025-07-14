@@ -2,6 +2,7 @@
 #define FEATURE_CHECK_H
 
 #include "feature/cc.h"
+#include "feature/flag.h"
 #include "feature/wasm.h"
 
-#endif
+#endif // FEATURE_CHECK_H

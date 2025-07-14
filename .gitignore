@@ -2,6 +2,7 @@
 **/*.a
 **/*.bc
 **/test
+**/*.wasm
 .editorconfig
 .vscode/
 test
