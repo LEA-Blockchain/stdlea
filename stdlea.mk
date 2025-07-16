@@ -1,27 +1,39 @@
+CC := clang
+
 STDLEA_MK_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 
 STDLEA_INCLUDE := -I$(STDLEA_MK_DIR)include
 
-# Security-related CFLAGS for WebAssembly builds
-# -fsanitize=undefined     : Catch undefined behavior at runtime
-# -flto                    : Enable link-time optimization (required by CFI)
-# -mexec-model=reactor     : Safer WASM module model for embedding
-# -mno-sign-ext            : Prevent unexpected sign-extension of integers
+CFLAGS_BASE := --target=wasm32-unknown-unknown -ffreestanding -nostdlib -Wl,--no-entry -Wall -Wextra -pedantic
+
+CFLAGS_WASM_FEATURES := -mbulk-memory -msign-ext -mmultivalue -flto
+
 ifeq ($(ENABLE_UBSEN),1)
+  ifneq ($(MAKECMDGOALS),clean)
+    UBSEN_WARNING := $(shell printf '\033[31;1mUBSan is enabled. This will directly increase the program size and may impact performance.\033[0m\n' 1>&2)
+  endif
+
 STDLEA_SECURITY_CFLAGS := \
   -fsanitize=undefined \
-  -flto \
+  -fno-sanitize=alignment \
   -mexec-model=reactor \
   -mno-sign-ext \
   -DENABLE_LEA_UBSAN
 endif
 
-# Warning and enforcement flags
-STDLEA_WARNING_CFLAGS := \
-  -Wall -Wextra -Wpedantic -Werror
+STDLEA_WARNING_CFLAGS := -Wall -Wextra -Wpedantic -Werror
 
-STDLEA_CFLAGS := $(STDLEA_INCLUDE) $(STDLEA_WARNING_CFLAGS) $(STDLEA_SECURITY_CFLAGS)
+SRCS := $(wildcard $(STDLEA_MK_DIR)src/*.c)
 
-STDLEA_SRCS := $(wildcard $(STDLEA_MK_DIR)src/*.c)
+HDRS := $(wildcard $(STDLEA_MK_DIR)include/*.h $(STDLEA_MK_DIR)include/feature/*.h)
 
-STDLEA_HDRS := $(wildcard $(STDLEA_MK_DIR)include/*.h $(STDLEA_MK_DIR)include/feature/*.h)
+CFLAGS := ${CFLAGS_BASE} $(CFLAGS_WASM_FEATURES) $(STDLEA_SECURITY_CFLAGS) ${STDLEA_WARNING_CFLAGS} ${STDLEA_INCLUDE} -D__lea__
+
+# --- Optional Compiler Flags ---
+CFLAGS += -DSCTP_HANDLER_PROVIDED
+ifeq ($(ENABLE_LEA_LOG), 1)
+CFLAGS += -DENABLE_LEA_LOG
+endif
+ifeq ($(ENABLE_LEA_FMT), 1)
+CFLAGS += -DENABLE_LEA_FMT
+endif

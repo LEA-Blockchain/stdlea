@@ -25,7 +25,6 @@ const print = (() => {
     return api;
 })();
 
-
 const cstring = (memory, ptr) => {
     if (!memory) return;
     const mem = new Uint8Array(memory.buffer, ptr);
