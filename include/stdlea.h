@@ -17,8 +17,7 @@
  * @param PROGRAM_ID The module from which to import.
  * @param FUNC_NAME The name of the function to import.
  */
-#define LEA_IMPORT(PROGRAM_ID, FUNC_NAME)                                                          \
-    __attribute__((import_module(#PROGRAM_ID), import_name(#FUNC_NAME))) extern
+#define LEA_IMPORT(PROGRAM_ID, FUNC_NAME) __attribute__((import_module(#PROGRAM_ID), import_name(#FUNC_NAME))) extern
 
 /**
  * @def IF_LEA_EXPORT(FUNC_NAME)
@@ -34,10 +33,11 @@
  *       providing the current line number, and then halts execution.
  */
 LEA_IMPORT(env, __lea_abort) void __lea_abort(int);
-#define LEA_ABORT()                                                                                \
-    do {                                                                                           \
-        __lea_abort(__LINE__);                                                                     \
-        __builtin_trap();                                                                          \
+#define LEA_ABORT()            \
+    do                         \
+    {                          \
+        __lea_abort(__LINE__); \
+        __builtin_trap();      \
     } while (0)
 
 #ifdef ENABLE_LEA_LOG

@@ -30,7 +30,6 @@ HDRS := $(wildcard $(STDLEA_MK_DIR)include/*.h $(STDLEA_MK_DIR)include/feature/*
 CFLAGS := ${CFLAGS_BASE} $(CFLAGS_WASM_FEATURES) $(STDLEA_SECURITY_CFLAGS) ${STDLEA_WARNING_CFLAGS} ${STDLEA_INCLUDE} -D__lea__
 
 # --- Optional Compiler Flags ---
-CFLAGS += -DSCTP_HANDLER_PROVIDED
 ifeq ($(ENABLE_LEA_LOG), 1)
 CFLAGS += -DENABLE_LEA_LOG
 endif
